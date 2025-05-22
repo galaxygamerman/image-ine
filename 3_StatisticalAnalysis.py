@@ -8,6 +8,7 @@ images = [
 		("Image 2", cv2.imread('image2.jpg',0))
 ]
 
+# Create individual histograms for each image
 figure,axis = plt.subplots(nrows=1,ncols=len(images),figsize=(9,4))
 figure.suptitle('Histogram of Pixel Intensities')
 
@@ -25,7 +26,6 @@ for i,(title,image) in enumerate(images):
 	print(f"Mode: {mode}")
 	print(f"Standard Deviation: {std_dev}")
 
-	# cv2.imshow(title, image)
 	# Plot histogram
 	subplot = axis[i]
 	subplot.hist(image.ravel(), bins=256, range=(0, 255), color='gray')
@@ -33,4 +33,5 @@ for i,(title,image) in enumerate(images):
 	subplot.set_xlabel('Pixel Intensity')
 	subplot.set_ylabel('Frequency')
 
-plt.show()
+figure.show()
+figure.waitforbuttonpress()
