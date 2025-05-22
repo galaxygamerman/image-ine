@@ -2,6 +2,9 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+# Flag for if you want to keep the window open for long
+PERSISTENT_WINDOW = False
+
 # Load image in grayscale
 images = [
 		("Image 1", cv2.imread('image1.jpg',0)),
@@ -33,5 +36,8 @@ for i,(title,image) in enumerate(images):
 	subplot.set_xlabel('Pixel Intensity')
 	subplot.set_ylabel('Frequency')
 
-figure.show()
-figure.waitforbuttonpress()
+if PERSISTENT_WINDOW:
+	plt.show()	# Global show is blocking
+else:
+	figure.show()	# Figure specific show is non-blocking
+	figure.waitforbuttonpress(timeout= 10)	# Wait for 10 seconds or until a key is pressed to close
